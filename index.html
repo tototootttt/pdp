@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pattaya Data Platform Layout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <div class="topbar-left">
+          <span class="lang-mini">ก</span>
+          <span class="lang-mini">ก</span>
+          <span class="flag-th">🇹🇭</span>
+          <span class="lang-mini" style="font-weight:600;">ไทย</span>
+        </div>
+        <div class="topbar-right">
+          <a href="#" class="topbar-action">เข้าสู่ระบบ</a>
+          <div class="divider-v"></div>
+          <a href="#" class="topbar-action">ลงทะเบียน</a>
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar">
+      <div class="container navbar-inner">
+        <a href="#" class="brand" aria-label="Pattaya Logo">
+          <img src="pattaya logo.png" alt="Pattaya Logo">
+        </a>
+
+        <ul class="menu">
+          <li><a href="index.html" class="active">หน้าหลัก</a></li>
+          <li><a href="#">ชุดข้อมูล</a></li>
+          <li><a href="#">กลุ่มชุดข้อมูล</a></li>
+          <li><a href="#">หน่วยงาน</a></li>
+          <li><a href="#">เกี่ยวกับ</a></li>
+          <li><a href="#">ร้องขอชุดข้อมูล</a></li>
+          <li><a href="documents.html">ประกาศ</a></li>
+          <li><a href="#" class="dropdown">เพิ่มเติม</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-wrap">
+      <div class="container">
+        <div class="hero">
+          <div class="overlay-card">
+            <div class="search-box">ค้นหาชุดข้อมูลเมืองพัทยา</div>
+            <div class="stats">
+              <div class="stat-box"><strong>50</strong><span>ชุดข้อมูล</span></div>
+              <div class="stat-box"><strong>15</strong><span>หน่วยงาน</span></div>
+              <div class="stat-box"><strong>33</strong><span>หมวดหมู่</span></div>
+            </div>
+          </div>
+
+          <button class="hero-btn prev" aria-label="Previous slide">❮</button>
+          <button class="hero-btn next" aria-label="Next slide">❯</button>
+
+          <div class="slides">
+            <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80');"></div>
+            <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80');"></div>
+            <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80');"></div>
+          </div>
+
+          <div class="dots">
+            <button class="dot active" type="button"></button>
+            <button class="dot" type="button"></button>
+            <button class="dot" type="button"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-main">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-item">
+            <div class="footer-icon">📍</div>
+            <p>ที่อยู่: 171 หมู่ 6 ถนนพัทยาเหนือ ตำบลนาเกลือ อำเภอบางละมุง<br>จังหวัด ชลบุรี 20150</p>
+          </div>
+
+          <div class="footer-item">
+            <div class="footer-icon">📞</div>
+            <p>โทร: 03825-3100 โทรสาร: 038-421591 Contact Center 1337</p>
+          </div>
+
+          <div class="footer-item">
+            <div class="footer-icon">✉️</div>
+            <p>e-Mail: saraban@pattaya.go.th</p>
+          </div>
+
+          <div class="footer-counter">ผู้เยี่ยมชม 571</div>
+        </div>
+
+        <div class="footer-policy">
+          <a href="document-detail.html">ความเป็นส่วนตัว</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">© All rights reserved 2567. เมืองพัทยา</div>
+  </footer>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    let current = 0;
+    let auto;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+        dots[i].classList.toggle('active', i === index);
+      });
+      current = index;
+    }
+
+    function nextSlide() {
+      showSlide((current + 1) % slides.length);
+    }
+
+    function prevSlide() {
+      showSlide((current - 1 + slides.length) % slides.length);
+    }
+
+    function startAuto() {
+      clearInterval(auto);
+      auto = setInterval(nextSlide, 5000);
+    }
+
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      startAuto();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      startAuto();
+    });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        showSlide(i);
+        startAuto();
+      });
+    });
+
+    startAuto();
+  </script>
+</body>
+</html>
